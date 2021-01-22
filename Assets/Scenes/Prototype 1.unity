@@ -215,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 417704, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 417704, guid: 68840c673a0b18e41a044ed077548d55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1331,7 +1331,7 @@ WheelCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493411151}
-  m_Center: {x: 0, y: 0.18, z: 0}
+  m_Center: {x: 0, y: 0.16, z: 0}
   m_Radius: 0.4
   m_SuspensionSpring:
     spring: 35000
@@ -1634,7 +1634,7 @@ WheelCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627099243}
-  m_Center: {x: 0, y: 0.18, z: 0}
+  m_Center: {x: 0, y: 0.16, z: 0}
   m_Radius: 0.4
   m_SuspensionSpring:
     spring: 35000
@@ -2467,9 +2467,15 @@ MonoBehaviour:
   speed: 0
   rpm: 0
   horsePower: 10000
+  wheelsOnGround: 0
   centerOfMass: {fileID: 95113289}
   speedometerText: {fileID: 1262072819}
   rpmText: {fileID: 374434172}
+  allWheels:
+  - {fileID: 1596155170}
+  - {fileID: 1753498266}
+  - {fileID: 627099248}
+  - {fileID: 493411156}
 --- !u!4 &964838543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417704, guid: 68840c673a0b18e41a044ed077548d55,
@@ -4085,7 +4091,7 @@ WheelCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596155165}
-  m_Center: {x: 0, y: 0.18, z: 0}
+  m_Center: {x: 0, y: 0.16, z: 0}
   m_Radius: 0.4
   m_SuspensionSpring:
     spring: 35000
@@ -4451,7 +4457,7 @@ WheelCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753498261}
-  m_Center: {x: 0, y: 0.18, z: 0}
+  m_Center: {x: 0, y: 0.16, z: 0}
   m_Radius: 0.4
   m_SuspensionSpring:
     spring: 35000

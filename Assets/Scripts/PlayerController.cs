@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -11,10 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rpm;
     [SerializeField] private float horsePower = 0.0f;
+    [SerializeField] private byte wheelsOnGround;
 
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private TextMeshProUGUI speedometerText;
     [SerializeField] private TextMeshProUGUI rpmText;
+    [SerializeField] private List<WheelCollider> allWheels;
 
 
     private float turnSpeed = 20;
@@ -36,17 +39,34 @@ public class PlayerController : MonoBehaviour
         _horizontalInput = Input.GetAxis("Horizontal");
         _forwardInput = Input.GetAxis("Vertical");
 
-        // Move the vehicle based on Vertical input. using physics and the local system.
-        _carRigidbody.AddRelativeForce(Vector3.forward * (horsePower * _forwardInput));
-        // Rotates the Vehicle based on horizontal input.
-        transform.Rotate(Vector3.up, turnSpeed * _horizontalInput * Time.deltaTime);
+        if (IsOnGround())
+        {
+            // Move the vehicle based on Vertical input. using physics and the local system.
+            _carRigidbody.AddRelativeForce(Vector3.forward * (horsePower * _forwardInput));
+            // Rotates the Vehicle based on horizontal input.
+            transform.Rotate(Vector3.up, turnSpeed * _horizontalInput * Time.deltaTime);
 
-        // Calculates the speed in KMh and displays it in the gui.
-        speed = _carRigidbody.velocity.magnitude * 3.6f; // Use 2.237 for mph.
-        speedometerText.text = $"Speed: {(int) speed} kmh";
+            // Calculates the speed in KMh and displays it in the gui.
+            speed = _carRigidbody.velocity.magnitude * 3.6f; // Use 2.237 for mph.
+            speedometerText.text = $"Speed: {(int) speed} kmh";
 
-        // Calculate the RPM value
-        rpm = (speed % 30) * 40;
-        rpmText.SetText($"RPM: {(int) rpm}");
+            // Calculate the RPM value
+            rpm = (speed % 30) * 40;
+            rpmText.SetText($"RPM: {(int) rpm}");
+        }
+    }
+
+    private bool IsOnGround()
+    {
+        wheelsOnGround = 0;
+        foreach (WheelCollider wheel in allWheels)
+        {
+            if (wheel.isGrounded)
+            {
+                wheelsOnGround++;
+            }
+        }
+
+        return wheelsOnGround == 4;
     }
 }
