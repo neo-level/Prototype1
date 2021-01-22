@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     // Allows to interact with the variable in the unity editor while staying private.
     [SerializeField] private float _horsePower = 0.0f;
+    [SerializeField] private GameObject centerOfMass;
+    
     
     private float turnSpeed = 20;
     private float _horizontalInput;
@@ -17,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _carRigidbody = GetComponent<Rigidbody>();
-        
+        _carRigidbody.centerOfMass = centerOfMass.transform.position;
+
     }
 
     // Update is called once per frame
